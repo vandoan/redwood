@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Let's Draw!</title>
+        <link rel='stylesheet' type='text/css' href='stylesheet.css'/>
+
+        <style>
+        	canvas {
+    			border: 1px dotted black;
+			}
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas" width="400" height="400">
+            This text is displayed if your browser does not support HTML5 Canvas.
+        </canvas>
+        <script type='text/javascript' src='script.js'></script>
+        
+        <script>
+			
+			var my_canvas = document.getElementById("canvas");
+			var context = my_canvas.getContext("2d");
+
+				context.beginPath;
+				context.stroke(); 
+				context.fillStyle = "green"; 
+				context.fillRect(10,10,50,20);
+				context.fillText("Hello!",15,175);
+
+        </script>
+    </body>
+</html>
+
