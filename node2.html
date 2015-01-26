@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="div1">
+<p id="p1">This is a paragraph.</p>
+<p id="p2">This is another paragraph.</p>
+<p>Wait 3 seconds. It's coming.</p>
+</div>
+
+<script>
+var para = document.createElement("p");
+var node = document.createTextNode("This is new.");
+para.appendChild(node);
+var element = document.getElementById("div1");
+element.appendChild(para);
+</script>
+
+<script>
+	setTimeout(function(){ 
+		var cow = document.getElementById("div1");
+		var gut = document.createElement("p");
+		var grass = document.createTextNode("Ta-dah! You're awesome.");
+
+		cow.appendChild(gut);
+		gut.appendChild(grass);
+	}, 3000);
+</script>
+
+
+
+</body>
+</html>
