@@ -1,0 +1,45 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+
+<style>
+body { height: 2000px; }
+
+/* Header */
+header { 
+    z-index: 999; 
+    margin: 0; 
+    overflow: hidden; 
+    height: 70px; 
+    background: #ccc; 
+    display: none;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%;
+}
+</style>
+
+<header class="shadow">
+    <section>
+      <nav>
+        <ul>
+          <li>one</li>
+          <li>two</li>
+        </ul>
+      </nav>
+    </section>
+</header>
+<script>
+jQuery(function($) {
+    $(window).scroll(function () { 
+        if ($(this).scrollTop() < 600) {
+            $('header').hide();
+        } else {
+            $('header').show();
+        }
+    });
+});
+</script>
+</html>
