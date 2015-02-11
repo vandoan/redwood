@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+
+<style>
+#foo {
+    color: red;
+    background-color: blue;
+    width: 200px;
+    height: 200px;
+}
+</style>
+
+</head>
+<body>
+
+<div id="foo">Scroll Mouse to Change Color</div>
+
+<script>
+$(function () {
+    var col = 255;
+
+    $('#foo').bind('mousewheel', function (e) {
+        if (e.originalEvent.wheelDelta / 120 > 0) {
+            if (col < 245) col += 10;
+            $(this).text('Scrolling up !').css('background-color', '#0000' + col.toString(16));
+        } else {
+            if (col > 10) col -= 10;
+            $(this).text('Scrolling down !').css('background-color', '#0000' + col.toString(16));
+        }
+    });
+});
+</script>
+
+
+
+</body>
+</html>
