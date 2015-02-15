@@ -1,0 +1,92 @@
+<head>
+    <script type="text/javascript">
+        function GetOffset (object, offset) {
+            if (!object)
+                return;
+            offset.x += object.offsetLeft;
+            offset.y += object.offsetTop;
+
+            GetOffset (object.offsetParent, offset);
+        }
+
+        function GetScrolled (object, scrolled) {
+            if (!object)
+                return;
+            scrolled.x += object.scrollLeft;
+            scrolled.y += object.scrollTop;
+
+            if (object.tagName.toLowerCase () != "html") {
+                GetScrolled (object.parentNode, scrolled);
+            }
+        }
+
+            // always return 1, except at non-default zoom levels in IE before version 8
+        function GetZoomFactor () {
+            var factor = 1;
+            if (document.body.getBoundingClientRect) {
+                    // rect is only in physical pixel size in IE before version 8 
+                var rect = document.body.getBoundingClientRect ();
+                var physicalW = rect.right - rect.left;
+                var logicalW = document.body.offsetWidth;
+
+                    // the zoom level is always an integer percent value
+                factor = Math.round ((physicalW / logicalW) * 100) / 100;
+            }
+            return factor;
+        }
+
+        function GetBox () {
+            var div = document.getElementById ("myDiv");
+
+            if (div.getBoundingClientRect) {        // Internet Explorer, Firefox 3+, Google Chrome, Opera 9.5+, Safari 4+
+                var rect = div.getBoundingClientRect ();
+                x = rect.left;
+                y = rect.top;
+                w = rect.right - rect.left;
+                h = rect.bottom - rect.top;
+
+                if (navigator.appName.toLowerCase () == "microsoft internet explorer") {
+                    // the bounding rectangle include the top and left borders of the client area
+                    x -= document.documentElement.clientLeft;
+                    y -= document.documentElement.clientTop;
+
+                    var zoomFactor = GetZoomFactor ();
+                    if (zoomFactor != 1) {  // IE 7 at non-default zoom level
+                        x = Math.round (x / zoomFactor);
+                        y = Math.round (y / zoomFactor);
+                        w = Math.round (w / zoomFactor);
+                        h = Math.round (h / zoomFactor);
+                    }
+                }
+            }
+            else {
+                    // older Firefox, Opera and Safari versions
+                var offset = {x : 0, y : 0};
+                GetOffset (div, offset);
+
+                var scrolled = {x : 0, y : 0};
+                GetScrolled (div.parentNode, scrolled);
+
+                x = offset.x - scrolled.x;
+                y = offset.y - scrolled.y;
+                w = div.offsetWidth;
+                h = div.offsetHeight;
+            }
+
+            alert ("Left: " + x + "\nTop: " + y + "\nWidth: " + w + "\nHeight: " + h);
+        }
+    </script>
+</head>
+<body>
+    <div style="height:200px; width:300px; overflow:auto;">
+        <div id="myDiv" style="width:250px; height:150px; border:1px solid red;">
+            You can get the bounding rectangle of this element 
+            relative to the top left corner of the client area with the button below.<br />
+            Use the scrollbars to test the placement of the bounding rectangle in different positions.
+        </div>
+        <div style="width:1000px; height:1000px;"></div>
+    </div>
+    <br />
+    <button onclick="GetBox ();">Get the placement of the element with red border!</button>
+</body>
+Copy Code	Print	Preview	
