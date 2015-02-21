@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+     <title>http://jsfiddle.net/e4VzT/2/</title>
+     <style>
+
+         article{
+    position: relative;
+    margin: 20px 0px 400px 0px;
+}
+
+.left{
+    width: 100px;
+    height: 500px;
+    border: 1px solid black;   
+}
+
+.info{
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    margin-left: 150px; 
+}
+
+</style>
+        <meta charset="utf-8" />  
+    </head>
+    <body>
+        <article>
+            <section class="left">
+            </section>
+            <div class="info">
+            </div>
+        </article>
+        
+        <article>
+            <section class="left">
+            </section>
+            <div class="info">
+            </div>
+        </article>
+        
+        <article>
+            <section class="left">
+            </section>
+            <div class="info">
+            </div>
+        </article>
+
+<script>
+
+    var nav= $.browser; //navigator
+
+if (nav.webkit) {
+    //check if navigator is Chrome or Safari
+    $('.left').siblings('.info').css('margin-left','200px');
+}
+
+$(window).scroll(function(){
+
+    var wTop = $(window).scrollTop();
+
+    $('.left').each(function(){
+        var xTop = $(this).offset().top;
+        var xBottom = xTop + $(this).height();
+
+        if (xTop <= wTop && xBottom >= wTop) {
+            $(this).addClass('active');
+        } else {
+            $(this).removeClass('active');
+            $(this).siblings('.info').attr('style','');
+            if (nav.webkit) {
+                //check if navigator is Chrome or Safari
+                $('.left').siblings('.info').css('margin-left','200px');
+            }
+
+        }
+    });
+
+
+    if($('.active').length){
+        //console.log('length '+$('.active').length);
+
+        var scr = $(this).scrollTop();
+        //console.log('ScrollTop: ' +scr);
+
+        var offset = $('.active').offset();
+        //console.log('Coordenadas: '+offset.top);
+
+        if(scr >= offset.top){
+            $('.active').siblings('.info').css('position','fixed');
+            $('.active').siblings('.info').css('top','0');
+            if (nav.webkit) {
+                //check if navigator is Chrome or Safari
+                $('.active').siblings('.info').css('margin-left','200px');
+            }
+        }else{
+            $('.active').siblings('.info').attr('style','');
+        }
+
+        if(scr >= $('.active').height()+offset.top-$('.active').siblings('.info').height()){
+            var top = $('.active').height() - $('.active').siblings('.info').height();
+    
+            $('.active').siblings('.info').css('position','absolute');
+            $('.active').siblings('.info').css('top', top);
+        }
+    }
+
+});
+
+</script>
