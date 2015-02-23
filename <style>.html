@@ -1,0 +1,62 @@
+<style>
+
+#header {
+    height: 100px;
+    background-color: yellow;
+    border: 1px solid:
+}
+#body {
+    background-color: white;
+    border: 1px solid black:
+}
+
+#content {
+    float: left;
+    border: 1px solid black;
+    width: 70%;
+    height: 1900px;
+}
+#sidebar {
+    float: right;
+    border: 1px solid black;
+    width: 25%;
+}
+#sticky {
+    background-color: yellow;
+}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+<html>
+
+<div id='header'>Le header</div>
+<div id='body'>
+    <div id='content'>Le left content... Very large</div>
+    <div id='sidebar'>
+        <div id='sticky'>Useful info while you scroll down</div>
+    </div>
+</div>
+
+
+<script>
+
+var baseTop = $("div#sticky").offset().top;
+$(window).scroll(function () {
+    var top = $(window).scrollTop();
+    if (top >= baseTop) {
+        $("div#sticky").css({
+            "position": "fixed",
+                "top": "2px"
+        });
+    } else if (top < baseTop) {
+        $("div#sticky").css({
+            "position": "",
+                "top": ""
+        });
+    }
+});
+
+</script>
+</html>
