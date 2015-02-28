@@ -10,6 +10,7 @@
 			margin-top: 100px;
 		}
 		#main-box div {
+			cursor: pointer;
 			height: 	200px;
 			display: 	inline-block;
 		}
@@ -20,11 +21,17 @@
 		#image { 
 			padding: 	0 20px;
 			width: 		200px;
-			background-image: url("http://lorempixel.com/400/200/sports/Dummy-Text/");
-			background-size: contain;
+		}
+
+		#image > div {
+			background-image: url("http://i.istockimg.com/cms/resources/images/HomePage/Tiles/Feb 2015/pantone-41894112.jpg");
+			background-size: cover;
+			width: 100%;
+			height: 100%;
 			background-repeat: no-repeat;
 			vertical-align: bottom;
 		}
+
 		#right-btn {
 			width: 		50px;
 			background-color: #404040;
@@ -35,21 +42,25 @@
 
 </head>
 
-
-
+<body>
 <center>
 
 <div id="main-box">
 	<div id="left-btn"></div>
 
 	<div id="image">
- 
+ 		<div></div>
 	</div>
 	
 	<div id="right-btn"></div>
 </div>
 
 </center>
+<script>
+	var image-list = [
 
+	];
+</script>
+</body>
 
 </html>
