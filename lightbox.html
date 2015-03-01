@@ -8,19 +8,24 @@
 		
 		#main-box {
 			margin-top: 100px;
+			border: 10px double black;
+			width: 385px;
+			padding: 20px;
+			height: 202px;
 		}
 		#main-box div {
 			cursor: pointer;
-			height: 	200px;
-			display: 	inline-block;
+			height: 200px;
+			display: inline-block;
+			vertical-align: bottom;
 		}
 		#left-btn {
-			width: 		50px;
+			width: 50px;
 			background-color: #404040;
 		}
 		#image { 
-			padding: 	0 20px;
-			width: 		200px;
+			padding: 0 20px;
+			width: 200px;
 		}
 
 		#image > div {
@@ -49,7 +54,7 @@
 	<div id="left-btn"></div>
 
 	<div id="image">
- 		<div></div>
+ 		<div id="inner-img"></div>
 	</div>
 	
 	<div id="right-btn"></div>
@@ -57,9 +62,20 @@
 
 </center>
 <script>
-	var image-list = [
-
+	var image_list = [
+		"http://i.istockimg.com/cms/resources/images/HomePage/Tiles/Feb 2015/pantone-41894112.jpg",
+		"http://i.istockimg.com/file_thumbview_approve/56741528/6/stock-photo-56741528-storm-clouds-over-sea.jpg",
+		"http://i.istockimg.com/file_thumbview_approve/41157808/6/stock-photo-41157808-galaxy-in-motion.jpg",
 	];
+	img_counter = 0;
+
+	$(document).ready(function(){
+		$("#left-btn").click(function(){
+			img_counter += 1; 
+			$("#inner-img").css('backgroundImage', 'url(' + image_list[img_counter] + ')');	
+			console.log(img_counter);		
+		});
+	});
 </script>
 </body>
 
