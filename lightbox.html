@@ -71,9 +71,17 @@
 
 	$(document).ready(function(){
 		$("#left-btn").click(function(){
-			img_counter += 1; 
+			img_counter -= 1; 
 			$("#inner-img").css('backgroundImage', 'url(' + image_list[img_counter] + ')');	
 			console.log(img_counter);		
+		});
+		$("#right-btn").click(function(){
+			$("#inner-img").css('backgroundImage', 'url(' + image_list[img_counter] + ')');	
+			console.log(img_counter);
+			img_counter += 1; 	
+			if (img_counter == image_list.length){
+				img_counter = 0;
+			}	
 		});
 	});
 </script>
