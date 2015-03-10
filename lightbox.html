@@ -29,7 +29,7 @@
 		}
 
 		#image > div {
-			background-image: url("http://i.istockimg.com/cms/resources/images/HomePage/Tiles/Feb 2015/pantone-41894112.jpg");
+			background-image: url("http://i.istockimg.com/file_thumbview_approve/41157808/6/stock-photo-41157808-galaxy-in-motion.jpg");
 			background-size: cover;
 			width: 100%;
 			height: 100%;
@@ -63,17 +63,20 @@
 </center>
 <script>
 	var image_list = [
-		"http://i.istockimg.com/cms/resources/images/HomePage/Tiles/Feb 2015/pantone-41894112.jpg",
+		"http://i.istockimg.com/cms/resources/images/HomePage/Tiles/Feb%202015/pantone-41894112.jpg",
 		"http://i.istockimg.com/file_thumbview_approve/56741528/6/stock-photo-56741528-storm-clouds-over-sea.jpg",
 		"http://i.istockimg.com/file_thumbview_approve/41157808/6/stock-photo-41157808-galaxy-in-motion.jpg",
 	];
-	img_counter = 0;
+	img_counter = 1;
 
 	$(document).ready(function(){
 		$("#left-btn").click(function(){
-			img_counter -= 1; 
+			img_counter -= 1;
 			$("#inner-img").css('backgroundImage', 'url(' + image_list[img_counter] + ')');	
-			console.log(img_counter);		
+			console.log(img_counter);
+			if (img_counter == 0){
+				img_counter = 3;
+			}	
 		});
 		$("#right-btn").click(function(){
 			$("#inner-img").css('backgroundImage', 'url(' + image_list[img_counter] + ')');	
