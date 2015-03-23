@@ -1,0 +1,32 @@
+<div id="box1"></div>
+<div id="box2"></div>
+<div id="box3"></div>
+<div id="box4"></div>
+<div id="box5"></div>
+<div id="box6"></div>
+
+
+<style>
+#box1, #box2, #box3, #box4, #box5, #box6 {
+    width: 100px;
+    height: 100px;
+    background: orange;
+    margin:100px auto;
+}
+#box6 {
+    margin-bottom:600px;
+}
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(window).scroll(function () {
+    $('[id^="box"]').each(function () {
+        if (($(this).offset().top - $(window).scrollTop()) < 20) {
+            $(this).stop().fadeTo(100, 0);
+        } else {
+            $(this).stop().fadeTo('fast', 1);
+        }
+    });
+});
+</script>
